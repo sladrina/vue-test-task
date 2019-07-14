@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container table-responsive" id="app">
+<!--чтобы редактировать - нажмите внутрь ячейки-->
+    <table class="table table-bordered table-striped table-sm" v-on:click="tableClick">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Наименование</th>
+            <th>Описание</th>
+            <th>Цена</th>
+            <th>Дата</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="row in rows">
+            <td class="col-xs-1">
+                <button type="button" class="btn btn-default" v-on:click="removeRow(row)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
+            <td class="col-xs-4">
+                <span>{{row.name}}</span>
+                <input v-on:blur="updateValue" v-model="row.name">
+            </td>
+            <td class="col-xs-4">
+                <span>{{row.desc}}</span>
+                <input v-on:blur="updateValue" v-model="row.desc">
+            </td>
+            <td class="col-xs-1">
+                <span>{{row.price}}</span>
+                <input v-on:blur="updateValue" v-model="row.price">
+            </td>
+            <td class="col-xs-2">
+                <span>{{row.date}}</span>
+                <input v-on:blur="updateValue" v-model="row.date">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-default" v-on:click="addRow">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>Итого:</td>
+            <td></td>
+            <td></td>
+            <td>{{total}}</td>
+            <td></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
